@@ -1,4 +1,4 @@
-import { Board } from './features/Board'
+import { Board } from '@/features/Board'
 
 function App() {
   return (

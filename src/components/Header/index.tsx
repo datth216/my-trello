@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
-import { ModeSelect } from '../../components/ModeSelect'
+import { ModeSelect } from '@/components/ModeSelect'
 
-export function Header() {
+export default function Header() {
   return (
     <Box
       sx={{
