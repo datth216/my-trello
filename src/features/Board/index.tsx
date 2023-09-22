@@ -1,7 +1,7 @@
 import Container from '@mui/material/Container'
-import { Header } from '../../components/Header'
 import BoardBar from './components/BoardBar'
-import { BoardContent } from './components/BoardContent'
+import BoardContent from './components/BoardContent'
+import Header from '@/components/Header'
 
 export function Board() {
   return (

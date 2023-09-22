@@ -1,5 +1,5 @@
+import { APP_BAR_HEIGHT, BOARD_BAR_HEIGHT } from '@/constants'
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
-import { APP_BAR_HEIGHT, BOARD_BAR_HEIGHT } from '../constants'
 
 
 declare module '@mui/material/styles' {

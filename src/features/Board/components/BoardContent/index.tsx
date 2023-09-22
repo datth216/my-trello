@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 
-export function BoardContent() {
+export default function BoardContent() {
   return (
     <Box
       sx={{
