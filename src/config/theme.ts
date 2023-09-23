@@ -29,7 +29,7 @@ const theme = extendTheme({
     light: {
       palette: {
         primary: {
-          main: '#1976d2'
+          main: '#fffff'
         }
       }
     },
