@@ -29,10 +29,19 @@ export default function Header() {
       px={2}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <AppsIcon />
+        <AppsIcon sx={{ color: 'primary.main' }} />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <SvgIcon component={TrelloIcon} inheritViewBox />
-          <Typography variant='h6' component='span' sx={{ fontWeight: 'bold' }}>
+          <SvgIcon
+            component={TrelloIcon}
+            inheritViewBox
+            fontSize='small'
+            sx={{ color: 'primary.main' }}
+          />
+          <Typography
+            variant='h6'
+            component='span'
+            sx={{ fontWeight: 'bold', color: 'primary.main' }}
+          >
             Trello
           </Typography>
         </Box>
@@ -40,18 +49,20 @@ export default function Header() {
         <Recent />
         <Starred />
         <Template />
-        <Button variant='contained'>Create</Button>
+        <Button variant='outlined' sx={{ color: 'primary.main' }}>
+          Create
+        </Button>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <TextField id='outlined-search' label='Search' type='search' size='small' />
         <ModeSelect />
         <Tooltip title='Notification'>
           <Badge color='success' variant='dot' sx={{ cursor: 'pointer' }}>
-            <NotificationsIcon />
+            <NotificationsIcon sx={{ color: 'primary.main' }} />
           </Badge>
         </Tooltip>
         <Tooltip title='Information'>
-          <HelpOutlineIcon sx={{ cursor: 'pointer' }} />
+          <HelpOutlineIcon sx={{ cursor: 'pointer', color: 'primary.main' }} />
         </Tooltip>
         <Profile />
       </Box>
