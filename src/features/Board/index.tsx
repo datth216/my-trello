@@ -8,7 +8,7 @@ export function Board() {
     <Container
       sx={{
         height: '100vh',
-        backgroundColor: 'primary.main'
+        backgroundColor: 'primary.common'
       }}
       disableGutters
       maxWidth={false}
