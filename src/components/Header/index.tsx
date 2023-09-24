@@ -23,8 +23,10 @@ export default function Header() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        gap: 2,
         height: (theme) => theme.trello.appBarHeight,
-        width: '100%'
+        width: '100%',
+        overflowX: 'auto'
       }}
       px={2}
     >
@@ -45,16 +47,24 @@ export default function Header() {
             Trello
           </Typography>
         </Box>
-        <Workspaces />
-        <Recent />
-        <Starred />
-        <Template />
+        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Workspaces />
+          <Recent />
+          <Starred />
+          <Template />
+        </Box>
         <Button variant='outlined' sx={{ color: 'primary.main' }}>
           Create
         </Button>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <TextField id='outlined-search' label='Search' type='search' size='small' />
+        <TextField
+          id='outlined-search'
+          label='Search'
+          type='search'
+          size='small'
+          sx={{ minWidth: 120 }}
+        />
         <ModeSelect />
         <Tooltip title='Notification'>
           <Badge color='success' variant='dot' sx={{ cursor: 'pointer' }}>
