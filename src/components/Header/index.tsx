@@ -15,6 +15,7 @@ import Starred from './Menus/components/Starred'
 import Template from './Menus/components/Template'
 import Workspaces from './Menus/components/Workspaces'
 import Profile from './Menus/components/Profile'
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd'
 
 export default function Header() {
   return (
@@ -53,7 +54,7 @@ export default function Header() {
           <Starred />
           <Template />
         </Box>
-        <Button variant='outlined' sx={{ color: 'primary.main' }}>
+        <Button variant='outlined' sx={{ color: 'primary.main' }} startIcon={<PlaylistAddIcon />}>
           Create
         </Button>
       </Box>
