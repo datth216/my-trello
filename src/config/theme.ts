@@ -1,7 +1,6 @@
 import { APP_BAR_HEIGHT, BOARD_BAR_HEIGHT } from '@/constants'
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
 
-
 declare module '@mui/material/styles' {
   interface Theme {
     trello: {
@@ -26,20 +25,8 @@ const theme = extendTheme({
   },
 
   colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: '#0092ab'
-        }
-      }
-    },
-    dark: {
-      palette: {
-        primary: {
-          main: '#4a6bad'
-        }
-      }
-    }
+    light: {},
+    dark: {}
   },
 
   components: {
@@ -51,7 +38,7 @@ const theme = extendTheme({
             height: '5px'
           },
           '*::-webkit-scrollbar-thumb': {
-            backgroundColor: '#66bfce'
+            backgroundColor: '#80a5a3'
           }
         }
       }
@@ -71,13 +58,8 @@ const theme = extendTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         // Name of the slot
-        root: ({ theme }) => ({
-          color: theme.palette.primary.main,
+        root: () => ({
           fontSize: '0.875rem',
-          '.MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.primary.main },
-          '&:hover': {
-            '.MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.primary.main }
-          },
           '& fieldset': {
             borderWidth: '1px !important'
           }
@@ -86,12 +68,8 @@ const theme = extendTheme({
     },
 
     MuiInputLabel: {
-      styleOverrides: {
-        root: ({ theme }) => ({
-          color: theme.palette.primary.main
-        })
-      }
-    },
+      styleOverrides: {}
+    }
   }
 })
 

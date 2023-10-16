@@ -22,7 +22,7 @@ export default function BoardBar() {
         overflowX: 'auto',
         justifyContent: 'space-between',
         gap: 2,
-        backgroundColor: '#00849b'
+        bgcolor: '#277461'
       }}
       px={2}
     >
@@ -93,9 +93,12 @@ export default function BoardBar() {
         <AvatarGroup
           max={4}
           sx={{
+            gap: '8px',
             '& .MuiAvatar-root ': {
               width: 32,
-              height: 32
+              height: 32,
+              fontSize: 16,
+              border: 'none'
             }
           }}
         >
