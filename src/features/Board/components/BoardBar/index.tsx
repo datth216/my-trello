@@ -22,7 +22,8 @@ export default function BoardBar() {
         overflowX: 'auto',
         justifyContent: 'space-between',
         gap: 2,
-        bgcolor: '#277461'
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#1b5143' : 'hsla(155,62%,25.6%)'),
+        '&::-webkit-scrollbar-track': { m: 2 }
       }}
       px={2}
     >

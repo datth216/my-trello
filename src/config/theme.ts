@@ -1,4 +1,4 @@
-import { APP_BAR_HEIGHT, BOARD_BAR_HEIGHT } from '@/constants'
+import { APP_BAR_HEIGHT, BOARD_BAR_HEIGHT, BOARD_CONTENT_HEIGHT } from '@/constants'
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
 
 declare module '@mui/material/styles' {
@@ -6,6 +6,7 @@ declare module '@mui/material/styles' {
     trello: {
       appBarHeight: string
       boardBarHeight: string
+      boardContentHeight: string
     }
   }
 
@@ -13,6 +14,7 @@ declare module '@mui/material/styles' {
     trello: {
       appBarHeight?: string
       boardBarHeight?: string
+      boardContentHeight?: string
     }
   }
 }
@@ -21,7 +23,8 @@ declare module '@mui/material/styles' {
 const theme = extendTheme({
   trello: {
     appBarHeight: APP_BAR_HEIGHT,
-    boardBarHeight: BOARD_BAR_HEIGHT
+    boardBarHeight: BOARD_BAR_HEIGHT,
+    boardContentHeight: BOARD_CONTENT_HEIGHT
   },
 
   colorSchemes: {
@@ -51,6 +54,17 @@ const theme = extendTheme({
         root: {
           // Some CSS
           textTransform: 'none'
+        }
+      }
+    },
+
+    MuiTypography: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          '&.MuiTypography-body1': {
+            fontSize: '14px'
+          }
         }
       }
     },

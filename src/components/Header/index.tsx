@@ -28,7 +28,8 @@ export default function Header() {
         height: (theme) => theme.trello.appBarHeight,
         width: '100%',
         overflowX: 'auto',
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#1d2125' : '#14553a')
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#1d2125' : '#14553a'),
+        '&::-webkit-scrollbar-track': { m: 2 }
       }}
       px={2}
     >
