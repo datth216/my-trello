@@ -1,4 +1,10 @@
-import { APP_BAR_HEIGHT, BOARD_BAR_HEIGHT, BOARD_CONTENT_HEIGHT } from '@/constants'
+import {
+  APP_BAR_HEIGHT,
+  BOARD_BAR_HEIGHT,
+  BOARD_CONTENT_HEIGHT,
+  COLUMN_FOOTER_HEIGHT,
+  COLUMN_HEADER_HEIGHT
+} from '@/constants'
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
 
 declare module '@mui/material/styles' {
@@ -7,6 +13,8 @@ declare module '@mui/material/styles' {
       appBarHeight: string
       boardBarHeight: string
       boardContentHeight: string
+      columnHeaderHeight: string
+      columnFooterHeight: string
     }
   }
 
@@ -15,6 +23,8 @@ declare module '@mui/material/styles' {
       appBarHeight?: string
       boardBarHeight?: string
       boardContentHeight?: string
+      columnHeaderHeight?: string
+      columnFooterHeight?: string
     }
   }
 }
@@ -24,7 +34,9 @@ const theme = extendTheme({
   trello: {
     appBarHeight: APP_BAR_HEIGHT,
     boardBarHeight: BOARD_BAR_HEIGHT,
-    boardContentHeight: BOARD_CONTENT_HEIGHT
+    boardContentHeight: BOARD_CONTENT_HEIGHT,
+    columnHeaderHeight: COLUMN_HEADER_HEIGHT,
+    columnFooterHeight: COLUMN_FOOTER_HEIGHT
   },
 
   colorSchemes: {
