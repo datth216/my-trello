@@ -1,9 +1,9 @@
-import Box from '@mui/material/Box'
-import Column from '../Column/Column'
-import Button from '@mui/material/Button'
 import AddIcon from '@mui/icons-material/Add'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Column from '../Column/Column'
 
-export function ListColumn() {
+export function ListColumn({ columns }) {
   return (
     <Box
       sx={{
@@ -15,8 +15,7 @@ export function ListColumn() {
         '&::-webkit-scrollbar-track': { m: 2 }
       }}
     >
-      <Column />
-      <Column />
+      {columns?.map((column) => <Column key={column._id} columns={column} />)}
       <Box
         sx={{
           minWidth: '200px',
@@ -39,7 +38,7 @@ export function ListColumn() {
           }}
           startIcon={<AddIcon />}
         >
-          Add another list
+          dsadsad
         </Button>
       </Box>
     </Box>

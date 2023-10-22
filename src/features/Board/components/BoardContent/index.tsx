@@ -1,7 +1,10 @@
 import Box from '@mui/material/Box'
 import ListColumn from './components/ListColumn/ListColumn'
+import { Board } from '@/model'
+import { orderArray } from '@/utils'
 
-export default function BoardContent() {
+export default function BoardContent({ board }: Board) {
+  const orderedColumns = orderArray(board?.columns, board?.columnOrderIds, '_id')
   return (
     <Box
       sx={{
@@ -12,7 +15,7 @@ export default function BoardContent() {
         padding: '12px 0'
       }}
     >
-      <ListColumn />
+      <ListColumn columns={orderedColumns} />
     </Box>
   )
 }

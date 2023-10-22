@@ -8,8 +8,10 @@ import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
 import React from 'react'
 import ListCard from '../ListCard/ListCard'
+import { orderArray } from '@/utils'
 
-function Column() {
+function Column({ columns }) {
+  const orderedCards = orderArray(columns?.cards, columns?.cardOrderIds, '_id')
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,7 +42,7 @@ function Column() {
         }}
       >
         <Typography variant='h6' sx={{ fontSize: '14px', cursor: 'pointer' }}>
-          Title Column
+          {columns?.title}
         </Typography>
         <Box>
           <Button
@@ -79,7 +81,7 @@ function Column() {
           </Menu>
         </Box>
       </Box>
-      <ListCard />
+      <ListCard cards={orderedCards} />
       <Box
         sx={{
           height: (theme) => theme.trello.columnFooterHeight,
