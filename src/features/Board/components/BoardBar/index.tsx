@@ -10,8 +10,10 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt'
+import { Board } from '@/model'
+import { capitializeFirstLetter } from '@/utils'
 
-export default function BoardBar() {
+export default function BoardBar({ board }: Board) {
   return (
     <Box
       sx={{
@@ -36,7 +38,7 @@ export default function BoardBar() {
             typography: { sm: 'body1', xs: 'body2' }
           }}
         >
-          My Trello
+          {board?.title}
         </Typography>
         <StarBorderIcon
           sx={{
@@ -48,7 +50,7 @@ export default function BoardBar() {
         />
         <Chip
           icon={<VpnLockIcon />}
-          label='Public/Private Workspace'
+          label={`${capitializeFirstLetter(board?.type)} Workspace`}
           variant='outlined'
           sx={{
             color: 'white',
