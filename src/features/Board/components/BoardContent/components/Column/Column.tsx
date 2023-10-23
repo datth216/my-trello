@@ -9,9 +9,19 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import ListCard from '../ListCard/ListCard'
 import { orderArray } from '@/utils'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
-function Column({ columns }) {
-  const orderedCards = orderArray(columns?.cards, columns?.cardOrderIds, '_id')
+function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: column._id,
+    data: { ...column }
+  })
+  const dndKitColumnStyle = {
+    transform: CSS.Translate.toString(transform),
+    transition
+  }
+  const orderedCards = orderArray(column?.cards, column?.cardOrderIds, '_id')
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,6 +32,10 @@ function Column({ columns }) {
   }
   return (
     <Box
+      ref={setNodeRef}
+      style={dndKitColumnStyle}
+      {...attributes}
+      {...listeners}
       sx={{
         ml: 2,
         minWidth: 300,
@@ -42,7 +56,7 @@ function Column({ columns }) {
         }}
       >
         <Typography variant='h6' sx={{ fontSize: '14px', cursor: 'pointer' }}>
-          {columns?.title}
+          {column?.title}
         </Typography>
         <Box>
           <Button
