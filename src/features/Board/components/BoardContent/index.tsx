@@ -1,18 +1,26 @@
 import { Board } from '@/model'
 import { orderArray } from '@/utils'
-import { DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 import Box from '@mui/material/Box'
 import { useEffect, useState } from 'react'
 import ListColumn from './components/ListColumn/ListColumn'
 
 export default function BoardContent({ board }: Board) {
-  const pointerSensor = useSensor(PointerSensor, {
+  const mouseSensor = useSensor(MouseSensor, {
+    // Require the mouse to move by 10 pixels before activating
     activationConstraint: {
       distance: 10
     }
   })
-  const sensors = useSensors(pointerSensor)
+  const touchSensor = useSensor(TouchSensor, {
+    // Press delay of 250ms, with tolerance of 5px of movement
+    activationConstraint: {
+      delay: 250,
+      tolerance: 5
+    }
+  })
+  const sensors = useSensors(mouseSensor, touchSensor)
   const [orderedColumns, setOrderedColumns] = useState<{ _id: string }[]>([])
   useEffect(() => {
     setOrderedColumns(orderArray(board?.columns, board?.columnOrderIds, '_id'))

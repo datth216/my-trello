@@ -18,6 +18,7 @@ function Column({ column }) {
     data: { ...column }
   })
   const dndKitColumnStyle = {
+    touchAction: 'none',
     transform: CSS.Translate.toString(transform),
     transition
   }
