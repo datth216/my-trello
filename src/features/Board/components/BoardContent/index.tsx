@@ -16,6 +16,7 @@ import Box from '@mui/material/Box'
 import { useEffect, useState } from 'react'
 import Column from './components/Column/Column'
 import ListColumn from './components/ListColumn/ListColumn'
+import Card from './components/Card/Card'
 
 export default function BoardContent({ board }: Board) {
   const [activeDragItemId, setActiveDragItemId] = useState(null)
@@ -92,9 +93,7 @@ export default function BoardContent({ board }: Board) {
           {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN && (
             <Column column={activeDragItemData} />
           )}
-          {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD && (
-            <Column column={activeDragItemData} />
-          )}
+          {activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD && <Card card={activeDragItemData} />}
         </DragOverlay>
       </Box>
     </DndContext>
