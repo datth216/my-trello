@@ -114,7 +114,8 @@ export const mockData = {
             columnId: 'column-id-02',
             title: 'Title of card 08',
             description: null,
-            cover: 'https://images.unsplash.com/photo-1696312868790-a259aeccaa14?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            cover:
+              'https://images.unsplash.com/photo-1696312868790-a259aeccaa14?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             memberIds: [],
             comments: [],
             attachments: []
@@ -125,7 +126,8 @@ export const mockData = {
             columnId: 'column-id-02',
             title: 'Title of card 09',
             description: null,
-            cover: 'https://images.unsplash.com/photo-1697463039113-729043bb558e?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            cover:
+              'https://images.unsplash.com/photo-1697463039113-729043bb558e?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             memberIds: [],
             comments: [],
             attachments: []
