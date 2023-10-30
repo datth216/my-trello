@@ -13,10 +13,11 @@ import {
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 import Box from '@mui/material/Box'
+import { cloneDeep } from 'lodash'
 import { useEffect, useState } from 'react'
+import Card from './components/Card/Card'
 import Column from './components/Column/Column'
 import ListColumn from './components/ListColumn/ListColumn'
-import Card from './components/Card/Card'
 
 export default function BoardContent({ board }: Board) {
   const [activeDragItemId, setActiveDragItemId] = useState(null)
@@ -36,7 +37,12 @@ export default function BoardContent({ board }: Board) {
     }
   })
   const sensors = useSensors(mouseSensor, touchSensor)
-  const [orderedColumns, setOrderedColumns] = useState<{ _id: string }[]>([])
+  const [orderedColumns, setOrderedColumns] = useState<
+    {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      [x: string]: any
+    }[]
+  >([])
   useEffect(() => {
     setOrderedColumns(orderArray(board?.columns, board?.columnOrderIds, '_id'))
   }, [board])
@@ -49,12 +55,85 @@ export default function BoardContent({ board }: Board) {
         : ACTIVE_DRAG_ITEM_TYPE.COLUMN
     )
     setActiveDragItemData(event?.active?.data?.current)
-    console.log('handleDragStart', event)
+  }
+
+  function findColumnByCardId(cardId) {
+    return orderedColumns.find((column) => column?.cards?.map((card) => card._id)?.includes(cardId))
+  }
+
+  function handleDragOver(event) {
+    if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) return
+
+    const { active, over } = event
+
+    if (!active || !over) return
+
+    const {
+      id: activeDraggingCardId,
+      data: { current: activeDraggingCardData }
+    } = active
+
+    const { id: overCardId } = over
+
+    const activeColumn = findColumnByCardId(activeDragItemId) //activeDraggingCardId
+    const overColumn = findColumnByCardId(overCardId)
+
+    if (!activeColumn || !overColumn) return
+
+    //handle drag over when card is dragging - when done, handle drag end
+    if (activeColumn._id !== overColumn._id) {
+      console.log('code chay vao day')
+
+      setOrderedColumns((prevColumns) => {
+        const overCardIndex = overColumn?.cards?.findIndex((card) => card._id === overCardId)
+
+        // let newIndex: number
+        const isBelowOverItem =
+          active.rect.current.translated &&
+          active.rect.current.translated.top > over.rect.top + over.rect.height
+        const modifier = isBelowOverItem ? 1 : 0
+        const newCardIndex =
+          overCardIndex >= 0 ? overCardIndex + modifier : overColumn?.cards?.length + 1
+
+        const nextColumns = cloneDeep(prevColumns)
+        const nextActiveColumn = nextColumns.find((column) => column._id === activeColumn._id)
+        const nextOverColumn = nextColumns.find((column) => column._id === overColumn._id)
+
+        if (nextActiveColumn) {
+          nextActiveColumn.cards = nextActiveColumn.cards.filter(
+            (card) => card._id !== activeDraggingCardId
+          )
+
+          nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map((card) => card._id)
+        }
+
+        if (nextOverColumn) {
+          nextOverColumn.cards = nextOverColumn.cards.filter(
+            (card) => card._id !== activeDraggingCardId
+          )
+
+          nextOverColumn.cards = nextOverColumn.cards.toSpliced(
+            newCardIndex,
+            0,
+            activeDraggingCardData
+          )
+          nextOverColumn.cardOrderIds = nextOverColumn.cards.map((card) => card._id)
+        }
+
+        // console.log(nextColumns)
+
+        return nextColumns
+      })
+    }
+
+    // console.log('handleDragOver', event)
   }
 
   function handleDragEnd(event) {
+    // console.log(handleDragEnd, event)
+
     const { active, over } = event
-    if (!over) return
+    if (!active || !over) return
     if (active.id !== over.id) {
       const oldIndex = orderedColumns.findIndex((c) => c._id === active.id)
       const newIndex = orderedColumns.findIndex((c) => c._id === over.id)
@@ -77,7 +156,12 @@ export default function BoardContent({ board }: Board) {
   }
 
   return (
-    <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}>
+    <DndContext
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      onDragOver={handleDragOver}
+      sensors={sensors}
+    >
       <Box
         sx={{
           width: '100%',
