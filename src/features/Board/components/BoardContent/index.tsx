@@ -9,7 +9,8 @@ import {
   TouchSensor,
   defaultDropAnimationSideEffects,
   useSensor,
-  useSensors
+  useSensors,
+  closestCorners
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 import Box from '@mui/material/Box'
@@ -161,6 +162,7 @@ export default function BoardContent({ board }: Board) {
       onDragEnd={handleDragEnd}
       onDragOver={handleDragOver}
       sensors={sensors}
+      collisionDetection={closestCorners}
     >
       <Box
         sx={{
